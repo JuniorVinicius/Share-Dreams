@@ -5,6 +5,7 @@ import {
   Description,
   DetailsConteiner,
   ImageConteiner,
+  Image,
   LabelOutConteiner,
   SimpleText,
   TextConteiner,
@@ -17,7 +18,9 @@ const Travel = () => {
   return (
     <>
       <Container>
-          
+        <ImageConteiner>
+            <Image source={require('../../../../assets/images/image-test.png')} />
+        </ImageConteiner>
       </Container>
     </>
   );

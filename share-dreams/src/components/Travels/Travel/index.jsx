@@ -1,4 +1,6 @@
+import { Colors } from "../../../constants";
 import Label from "../../Label";
+import { ActionIconButton } from "../../UI";
 
 import {
   Container,
@@ -13,9 +15,10 @@ import {
   TextOutConteiner,
   Title,
   TitleContainer,
+  TitleInnerContainer,
 } from "./style";
 
-const Travel = () => {
+const Travel = ({id}) => {
   return (
     <>
       <Container>
@@ -24,7 +27,13 @@ const Travel = () => {
         </ImageConteiner>
         <DetailsConteiner>
           <TitleContainer>
-            <Title>Titulo do Travel</Title>
+            <TitleInnerContainer>
+              <Title ellipsizeMode="tail" numberOfLines={1}>
+                Titulo do Travel ewfineinfuiebfubduifbusdbfu
+              </Title>
+            </TitleInnerContainer>
+
+            <ActionIconButton size={20} borderColor={Colors.primaryGray}/>
           </TitleContainer>
           <LabelOutConteiner>
             <Label type="Rejected" />
@@ -32,7 +41,12 @@ const Travel = () => {
           <TextOutConteiner>
             <InnerConteiner>
               <TextConteiner>
-                <Description ellipsizeMode='tail' numberOfLines={1}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus deleniti pariatur ullam! Quis vel officia totam sed voluptatibus odit, culpa, consectetur dignissimos iste tempore quia doloremque blanditiis, alias ullam enim?</Description>
+                <Description ellipsizeMode="tail" numberOfLines={1}>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Necessitatibus deleniti pariatur ullam! Quis vel officia totam
+                  sed voluptatibus odit, culpa, consectetur dignissimos iste
+                  tempore quia doloremque blanditiis, alias ullam enim?
+                </Description>
               </TextConteiner>
               <TextConteiner>
                 <SimpleText>QTD/P: 0/0</SimpleText>

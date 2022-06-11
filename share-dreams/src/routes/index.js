@@ -2,6 +2,8 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { AllTravels, Favorites, MyTravels } from "../screens";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Colors } from "../constants";
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -11,12 +13,13 @@ const TabScreens = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: { fontSize: 12, fontWeight: "700" },
-        tabBarActiveTintColor: "#fff",
-        tabBarInactiveTintColor: "rgba(255, 255, 255, 0.70)",
+        tabBarActiveTintColor: Colors.primaryLight,
+        tabBarInactiveTintColor: Colors.secondLight,
         tabBarStyle: {
-          backgroundColor: "#005691",
+          backgroundColor: Colors.primaryBlue,
         },
-        tabBarIndicatorStyle: { backgroundColor: "#fff" },
+        tabBarIndicatorStyle: { backgroundColor: Colors.primaryLight },
+
       }}
     >
       <Tab.Screen
@@ -49,9 +52,9 @@ const Screens = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerTintColor: "#fff",
+          headerTintColor: Colors.primaryLight,
           headerStyle: {
-            backgroundColor: "#005691",
+            backgroundColor: Colors.primaryBlue,
           },
         }}
       >
@@ -61,6 +64,9 @@ const Screens = () => {
           options={{
             title: "Share Dreams",
             headerShadowVisible: false,
+            headerRight: () => (
+              <FontAwesome5 name="search" size={18} color={Colors.primaryLight}  />
+            )
           }}
         />
       </Stack.Navigator>

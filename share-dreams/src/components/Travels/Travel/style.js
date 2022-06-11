@@ -1,13 +1,15 @@
 import styled from "styled-components/native";
+import { Colors } from "../../../constants";
 
 export const Container = styled.View`
   display: flex;
   height: 130px;
-  background: #fff;
+  background: ${Colors.primaryLight};
   border-radius: 10px;
   padding: 5px;
-  border: 2px solid #e6e6e6;
+  border: 2px solid ${Colors.secondLight200};
   flex-direction: row;
+  margin-bottom: 10px;
 `;
 export const ImageConteiner = styled.View`
   width: 40%;
@@ -27,10 +29,16 @@ export const DetailsConteiner = styled.View`
 export const Title = styled.Text`
   font-size: 18px;
   font-weight: bold;
-  color: #494949;
+  color: ${Colors.secondDark};
 `;
 export const TitleContainer = styled.View`
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const TitleInnerContainer = styled.View`
+   width: 80%;
 `;
 
 export const LabelOutConteiner = styled.View`
@@ -64,10 +72,10 @@ export const TextConteiner = styled.View`
 
 export const Description = styled.Text`
   font-size: 12px;
-  color: #494949;
+  color: ${Colors.secondDark};
 `;
 
 export const SimpleText = styled.Text`
   font-size: 12px;
-  color: #494949;
+  color: ${Colors.secondDark};
 `;

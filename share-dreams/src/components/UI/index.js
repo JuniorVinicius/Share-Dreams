@@ -1,4 +1,4 @@
+import { MainContainer } from "./Conteiners/style";
+import { ActionIconButton, AddButton} from "./Buttons";
 
-import { MainContainer } from './Conteiners/style';
-
-export {MainContainer}
+export { MainContainer, ActionIconButton, AddButton };

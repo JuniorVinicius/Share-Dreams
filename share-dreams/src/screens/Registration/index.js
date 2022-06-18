@@ -1,5 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
-import { InputField } from "../../components";
+import { InputField, SimpleButton } from "../../components";
+import { ButtonContainer } from "./style";
 
 export default function Registration() {
   return (
@@ -10,8 +11,16 @@ export default function Registration() {
         <InputField placeholder="Travel Return Day" />
         <InputField placeholder="Travel Price" />
         <InputField placeholder="Amount of people" />
-        <InputField placeholder="Description" height={100} />
+        <InputField
+          placeholder="Description"
+          height={100}
+          multiline={true}
+          numberOfLines={3}
+        />
       </ScrollView>
+      <ButtonContainer>
+        <SimpleButton title="Save" />
+      </ButtonContainer>
     </>
   );
 }
@@ -19,7 +28,7 @@ export default function Registration() {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal:15,
-    paddingVertical:10,
-  }
-})
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+});

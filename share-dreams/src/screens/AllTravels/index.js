@@ -34,9 +34,14 @@ const DATA = [
   },
 ];
 
-const AllTravels = () => {
+const AllTravels = ({ navigation }) => {
+  
   const renderItem = ({ item }) => {
     return <Travel id={item.id} />;
+  };
+
+  const addTravel = () => {
+    navigation.navigate("Registration");
   };
 
   return (
@@ -46,7 +51,7 @@ const AllTravels = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      <AddButton />
+      <AddButton onPress={addTravel} />
     </MainContainer>
   );
 };

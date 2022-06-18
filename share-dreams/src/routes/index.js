@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { AllTravels, Favorites, MyTravels } from "../screens";
+import { AllTravels, Favorites, MyTravels, Registration } from "../screens";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants";
 
@@ -67,6 +67,14 @@ const Screens = () => {
             headerRight: () => (
               <FontAwesome5 name="search" size={18} color={Colors.primaryLight}  />
             )
+          }}
+        />
+        <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            title: "Travel Register",
+            headerShadowVisible: true
           }}
         />
       </Stack.Navigator>

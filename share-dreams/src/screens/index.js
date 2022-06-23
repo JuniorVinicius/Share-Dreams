@@ -2,5 +2,6 @@ import AllTravels from "./AllTravels";
 import MyTravels from "./MyTravels";
 import Favorites from "./Favorites";
 import Registration from "./Registration";
+import Details from "./Details";
 
-export { AllTravels, MyTravels, Favorites, Registration };
+export { AllTravels, MyTravels, Favorites, Registration, Details };

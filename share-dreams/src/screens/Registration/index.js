@@ -27,7 +27,6 @@ export default function Registration() {
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 15,
     paddingVertical: 10,
   },

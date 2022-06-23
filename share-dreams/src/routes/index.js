@@ -1,7 +1,13 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { AllTravels, Favorites, MyTravels, Registration } from "../screens";
+import {
+  AllTravels,
+  Details,
+  Favorites,
+  MyTravels,
+  Registration,
+} from "../screens";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants";
 
@@ -19,7 +25,6 @@ const TabScreens = () => {
           backgroundColor: Colors.primaryBlue,
         },
         tabBarIndicatorStyle: { backgroundColor: Colors.primaryLight },
-
       }}
     >
       <Tab.Screen
@@ -59,14 +64,26 @@ const Screens = () => {
         }}
       >
         <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{
+            title: "Details",
+            headerShadowVisible: true,
+          }}
+        />
+        <Stack.Screen
           name="Home"
           component={TabScreens}
           options={{
             title: "Share Dreams",
             headerShadowVisible: false,
             headerRight: () => (
-              <FontAwesome5 name="search" size={18} color={Colors.primaryLight}  />
-            )
+              <FontAwesome5
+                name="search"
+                size={18}
+                color={Colors.primaryLight}
+              />
+            ),
           }}
         />
         <Stack.Screen
@@ -74,7 +91,7 @@ const Screens = () => {
           component={Registration}
           options={{
             title: "Travel Register",
-            headerShadowVisible: true
+            headerShadowVisible: true,
           }}
         />
       </Stack.Navigator>

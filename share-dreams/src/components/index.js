@@ -2,6 +2,8 @@ import { Travel } from "./Travels";
 import { MainContainer, ActionIconButton, AddButton, SimpleButton } from "./UI";
 import Label from "./Label";
 import InputField from "./Input";
+import BackgroundImage from './Background';
+import OwnerLabel from './Owner';
 
 export {
   Travel,
@@ -11,4 +13,6 @@ export {
   AddButton,
   InputField,
   SimpleButton,
+  BackgroundImage,
+  OwnerLabel
 };

@@ -23,7 +23,7 @@ export default function BackgroundImage({
       ) : (
         <Pressable style={styles.icon} onPress={onPress}>
           <Entypo
-            name="star-outlined"
+            name="star"
             size={sizeStar}
             color={colorStarInnactive}
           />

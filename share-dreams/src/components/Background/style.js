@@ -11,5 +11,5 @@ export const Image = styled.Image`
   height: 100%;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-    opacity: 1;
+    opacity: 0.8;
 `;

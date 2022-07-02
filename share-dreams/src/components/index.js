@@ -4,6 +4,7 @@ import Label from "./Label";
 import InputField from "./Input";
 import BackgroundImage from './Background';
 import OwnerLabel from './Owner';
+import TravelerPic from './Travelers';
 
 export {
   Travel,
@@ -14,5 +15,6 @@ export {
   InputField,
   SimpleButton,
   BackgroundImage,
-  OwnerLabel
+  OwnerLabel,
+  TravelerPic
 };

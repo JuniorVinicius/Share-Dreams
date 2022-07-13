@@ -60,7 +60,7 @@ export const MOCK_TRAVELS = [
     travel_date: "20/12/2022",
     travel_return_date: "05/01/2023",
     travelers_max_quantity: 6,
-    travelers_acepted: [4, 7, 5],
+    travelers_acepted: [2, 4, 7, 5],
     travelers_pending: [2, 1],
     travelers_declined: [3],
     is_favorite: false,

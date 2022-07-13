@@ -17,19 +17,20 @@ import {
   ButtonContainer,
 } from "./style";
 import { TravelContext } from "../../context/travelContext";
-import { MOCK_TRAVELERS, MOCK_TRAVELS } from "../../data";
+import { MOCK_TRAVELERS, MOCK_TRAVELS, MOCK_USER } from "../../data";
 
 export default function Details() {
   const [isFavorited, setIsFavorited] = useState(false);
   const [travelData, setTravelData] = useState();
   const [owner, setOwner] = useState();
+  const [isCancelButton, setIsCancelButton] = useState(false);
   const { travelId, setFavorites, favorites } = useContext(TravelContext);
 
   const favoriteHandler = () => {
     if (!isFavorited) {
       setFavorites((prev) => [travelId, ...prev]);
       setIsFavorited(!isFavorited);
-    }else{
+    } else {
       setIsFavorited(!isFavorited);
       setFavorites((prev) => prev.filter((id) => id !== travelId));
     }
@@ -41,8 +42,22 @@ export default function Details() {
     setTravelData(data);
     setOwner(ownerData);
 
-    if(favorites.includes(travelId)){
+    if (favorites.includes(travelId)) {
       setIsFavorited(true);
+    }
+
+    let isApproved = false;
+
+    if (
+      data.travelers_acepted.includes(MOCK_USER.id) ||
+      data.travelers_pending.includes(MOCK_USER.id) ||
+      data.travelers_declined.includes(MOCK_USER.id)
+    ) {
+      isApproved = true;
+    }
+
+    if (ownerData.id === MOCK_USER.id || isApproved) {
+      setIsCancelButton(true);
     }
   }, [travelId]);
 
@@ -115,7 +130,11 @@ export default function Details() {
             <TravelerPic isAddTraveler={true} name="Add Traveler" />
           </ScrollView>
           <ButtonContainer>
-            <SimpleButton title="Sign Up" />
+            {isCancelButton ? (
+              <SimpleButton title="Cancel" />
+            ) : (
+              <SimpleButton title="Sign Up" />
+            )}
           </ButtonContainer>
         </Container>
       </ScrollView>

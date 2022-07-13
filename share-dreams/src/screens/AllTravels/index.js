@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FlatList } from "react-native";
 import { Travel, MainContainer, AddButton } from "../../components";
 import { MOCK_TRAVELS } from "./../../data";
@@ -36,6 +36,7 @@ const AllTravels = ({ navigation }) => {
   const addTravel = () => {
     navigation.navigate("Registration");
   };
+
 
   return (
     <MainContainer>

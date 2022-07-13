@@ -24,15 +24,6 @@ export default function ActionIconButton({
         </Pressable>
       );
     }
-    return (
-      <Pressable onPress={onPress}>
-        <MaterialCommunityIcons
-          name="alpha-x-circle-outline"
-          size={size}
-          color={borderColor}
-        />
-      </Pressable>
-    );
   };
 
   const icons = getIcon();

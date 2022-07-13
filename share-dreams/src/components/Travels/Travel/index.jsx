@@ -55,6 +55,7 @@ const Travel = ({
                 type={typeActionButton}
                 onPress={onPressActionButton}
                 isFavorite={isFavorite}
+                innerStarColor={Colors.primaryBlue}
               />
             </TitleContainer>
             <LabelOutConteiner>

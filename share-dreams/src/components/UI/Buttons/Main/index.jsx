@@ -5,7 +5,7 @@ import { Container, TextButton } from "./style";
 export default function SimpleButton({ onPress, title }) {
   return (
     <Pressable onPress={onPress}>
-      <Container>
+      <Container type={title}>
         <TextButton>{title}</TextButton>
       </Container>
     </Pressable>

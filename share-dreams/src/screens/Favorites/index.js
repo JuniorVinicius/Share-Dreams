@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { Travel, MainContainer } from "../../components";
+import { Travel, MainContainer, EmptyScreen } from "../../components";
 import { MOCK_TRAVELS } from "./../../data";
 import { MOCK_USER } from "./../../data";
 import { TravelContext } from "../../context/travelContext";
@@ -17,7 +17,7 @@ const Favorites = ({ navigation }) => {
 
   const handleClickFavorite = (itemId) => {
     setFavorites((prev) => prev.filter((id) => id !== itemId));
-  }
+  };
 
   const renderItem = ({ item }) => {
     let status = "";
@@ -44,7 +44,7 @@ const Favorites = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const favoriteTravels = []
+    const favoriteTravels = [];
     MOCK_TRAVELS.forEach((travel) => {
       if (favorites.includes(travel.id)) {
         favoriteTravels.push(travel);
@@ -54,14 +54,19 @@ const Favorites = ({ navigation }) => {
   }, [favorites]);
 
   return (
-    <MainContainer>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={travels}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </MainContainer>
+    <>
+    {travels.length > 0 ? (
+      <MainContainer>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={travels}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </MainContainer>
+    ): <EmptyScreen title="No Favorites" />}
+      
+    </>
   );
 };
 

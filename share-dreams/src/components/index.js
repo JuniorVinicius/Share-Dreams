@@ -5,6 +5,7 @@ import InputField from "./Input";
 import BackgroundImage from './Background';
 import OwnerLabel from './Owner';
 import TravelerPic from './Travelers';
+import EmptyScreen from './Empty/index';
 
 export {
   Travel,
@@ -16,5 +17,6 @@ export {
   SimpleButton,
   BackgroundImage,
   OwnerLabel,
-  TravelerPic
+  TravelerPic,
+  EmptyScreen
 };

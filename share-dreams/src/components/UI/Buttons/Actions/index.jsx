@@ -1,3 +1,4 @@
+import { Pressable } from "react-native";
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 
 export default function ActionIconButton({
@@ -11,16 +12,26 @@ export default function ActionIconButton({
   const getIcon = () => {
     if (type === "favorite") {
       if (isFavorite) {
-        return <Entypo name="star" size={size} color={innerStarColor} />;
+        return (
+          <Pressable onPress={onPress}>
+            <Entypo name="star" size={size} color={innerStarColor} />
+          </Pressable>
+        );
       }
-      return <Entypo name="star-outlined" size={size} color={borderColor} />;
+      return (
+        <Pressable onPress={onPress}>
+          <Entypo name="star-outlined" size={size} color={borderColor} />
+        </Pressable>
+      );
     }
     return (
-      <MaterialCommunityIcons
-        name="alpha-x-circle-outline"
-        size={size}
-        color={borderColor}
-      />
+      <Pressable onPress={onPress}>
+        <MaterialCommunityIcons
+          name="alpha-x-circle-outline"
+          size={size}
+          color={borderColor}
+        />
+      </Pressable>
     );
   };
 

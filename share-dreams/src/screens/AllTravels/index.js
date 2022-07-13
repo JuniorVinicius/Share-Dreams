@@ -1,43 +1,36 @@
+import { useContext } from "react";
 import { FlatList } from "react-native";
 import { Travel, MainContainer, AddButton } from "../../components";
-
-const DATA = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-  {
-    id: 6,
-  },
-  {
-    id: 7,
-  },
-  {
-    id: 8,
-  },
-  {
-    id: 9,
-  },
-  {
-    id: 10,
-  },
-];
+import { MOCK_TRAVELS } from "./../../data";
+import { MOCK_USER } from "./../../data";
+import { TravelContext } from "./../../context/travelContext";
 
 const AllTravels = ({ navigation }) => {
-  
+  const { setTravelId } = useContext(TravelContext);
+  const handleClickTravel = (itemId) => {
+    setTravelId(itemId);
+    navigation.navigate("Details");
+  };
+
   const renderItem = ({ item }) => {
-    return <Travel id={item.id} />;
+    let status = "";
+    if (item.author_id === MOCK_USER.id) {
+      status = "Admin";
+    } else if (item.travelers_acepted.includes(MOCK_USER.id)) {
+      status = "Accepted";
+    } else if (item.travelers_pending.includes(MOCK_USER.id)) {
+      status = "Pending";
+    } else {
+      status = "Rejected";
+    }
+    return (
+      <Travel
+        id={item.id}
+        {...item}
+        status={status}
+        onPress={() => handleClickTravel(item.id)}
+      />
+    );
   };
 
   const addTravel = () => {
@@ -47,7 +40,8 @@ const AllTravels = ({ navigation }) => {
   return (
     <MainContainer>
       <FlatList
-        data={DATA}
+        showsVerticalScrollIndicator={false}
+        data={MOCK_TRAVELS}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />

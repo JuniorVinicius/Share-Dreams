@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ScrollView } from "react-native";
 import {
   BackgroundImage,
@@ -16,13 +16,49 @@ import {
   Title,
   ButtonContainer,
 } from "./style";
+import { TravelContext } from "../../context/travelContext";
+import { MOCK_TRAVELERS, MOCK_TRAVELS } from "../../data";
 
 export default function Details() {
   const [isFavorited, setIsFavorited] = useState(false);
+  const [travelData, setTravelData] = useState();
+  const [owner, setOwner] = useState();
+  const { travelId, setFavorites, favorites } = useContext(TravelContext);
 
   const favoriteHandler = () => {
-    setIsFavorited(!isFavorited);
+    if (!isFavorited) {
+      setFavorites((prev) => [travelId, ...prev]);
+      setIsFavorited(!isFavorited);
+    }else{
+      setIsFavorited(!isFavorited);
+      setFavorites((prev) => prev.filter((id) => id !== travelId));
+    }
   };
+
+  useEffect(() => {
+    const data = MOCK_TRAVELS.find((item) => item.id === travelId);
+    const ownerData = MOCK_TRAVELERS.find((item) => item.id === data.author_id);
+    setTravelData(data);
+    setOwner(ownerData);
+
+    if(favorites.includes(travelId)){
+      setIsFavorited(true);
+    }
+  }, [travelId]);
+
+  const TRAVELERS = travelData?.travelers_acepted.map((item) => {
+    const traveler = MOCK_TRAVELERS.find((traveler) => traveler.id === item);
+    if (traveler.id !== owner.id) {
+      return (
+        <TravelerPic
+          key={traveler.id}
+          image={traveler?.profile_picture}
+          name={traveler?.name}
+          isOwner={false}
+        />
+      );
+    }
+  });
 
   return (
     <>
@@ -33,31 +69,49 @@ export default function Details() {
           colorStarActive={Colors.primaryBlue}
           onPress={favoriteHandler}
           isActive={isFavorited}
+          image={travelData?.image}
         />
 
         <Container>
-          <OwnerLabel size={50} />
+          <OwnerLabel
+            size={50}
+            image={owner?.profile_picture}
+            name={owner?.name}
+            description={owner?.bio}
+          />
 
           <DescriptionOutContainer>
-            <Title>Travel Destianation</Title>
+            <Title>{travelData?.title}</Title>
             <DescriptionContainer>
-              <Description>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                unde cumque laboriosam architecto, quaerat numquam perferendis
-                inventore? Quasi animi quia fugit officiis eveniet nemo tempora
-                minima dolorem. Ea, alias eius.
-              </Description>
+              <Description>{travelData?.description}</Description>
             </DescriptionContainer>
 
-            <GeneralText>TRAVEL DAY: 00/00/00</GeneralText>
-            <GeneralText>TRAVEL RETURN DAY: 00/00/00</GeneralText>
-            <GeneralText>QTD/P: 2/3</GeneralText>
-            <GeneralText>TRAVEL PRICE: $0.00</GeneralText>
-            <GeneralText>VALUE/P: $0.00</GeneralText>
+            <GeneralText>TRAVEL DAY: {travelData?.travel_date}</GeneralText>
+            <GeneralText>
+              TRAVEL RETURN DAY: {travelData?.travel_return_date}
+            </GeneralText>
+            <GeneralText>
+              QTD/P:{" "}
+              {travelData?.travelers_acepted.length +
+                "/" +
+                travelData?.travelers_max_quantity}
+            </GeneralText>
+            <GeneralText>TRAVEL PRICE: ${travelData?.travel_price}</GeneralText>
+            <GeneralText>
+              VALUE/P: $
+              {(
+                travelData?.travel_price / travelData?.travelers_max_quantity
+              ).toFixed(2)}
+            </GeneralText>
           </DescriptionOutContainer>
           <Title>Travelers</Title>
           <ScrollView horizontal={true}>
-            <TravelerPic name="Chris" isOwner={true} />
+            <TravelerPic
+              image={owner?.profile_picture}
+              name={owner?.name}
+              isOwner={true}
+            />
+            {TRAVELERS}
             <TravelerPic isAddTraveler={true} name="Add Traveler" />
           </ScrollView>
           <ButtonContainer>

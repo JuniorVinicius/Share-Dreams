@@ -1,3 +1,4 @@
+import { Pressable } from "react-native";
 import { Colors } from "../../../constants";
 import Label from "../../Label";
 import { ActionIconButton } from "../../UI";
@@ -18,51 +19,76 @@ import {
   TitleInnerContainer,
 } from "./style";
 
-const Travel = ({id}) => {
+const Travel = ({
+  id,
+  image,
+  title,
+  description,
+  travel_price,
+  travelers_max_quantity,
+  travelers_acepted,
+  travel_date,
+  status,
+  onPress,
+  typeActionButton,
+  onPressActionButton,
+  isFavorite,
+}) => {
   return (
     <>
-      <Container>
-        <ImageConteiner>
-          <Image source={require("../../../../assets/images/image-test.png")} />
-        </ImageConteiner>
-        <DetailsConteiner>
-          <TitleContainer>
-            <TitleInnerContainer>
-              <Title ellipsizeMode="tail" numberOfLines={1}>
-                Titulo do Travel ewfineinfuiebfubduifbusdbfu
-              </Title>
-            </TitleInnerContainer>
+      <Pressable onPress={onPress}>
+        <Container>
+          <ImageConteiner>
+            <Image source={{ uri: image }} />
+          </ImageConteiner>
+          <DetailsConteiner>
+            <TitleContainer>
+              <TitleInnerContainer>
+                <Title ellipsizeMode="tail" numberOfLines={1}>
+                  {title}
+                </Title>
+              </TitleInnerContainer>
 
-            <ActionIconButton size={20} borderColor={Colors.primaryGray}/>
-          </TitleContainer>
-          <LabelOutConteiner>
-            <Label type="Rejected" />
-          </LabelOutConteiner>
-          <TextOutConteiner>
-            <InnerConteiner>
-              <TextConteiner>
-                <Description ellipsizeMode="tail" numberOfLines={1}>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Necessitatibus deleniti pariatur ullam! Quis vel officia totam
-                  sed voluptatibus odit, culpa, consectetur dignissimos iste
-                  tempore quia doloremque blanditiis, alias ullam enim?
-                </Description>
-              </TextConteiner>
-              <TextConteiner>
-                <SimpleText>QTD/P: 0/0</SimpleText>
-              </TextConteiner>
-            </InnerConteiner>
-            <InnerConteiner>
-              <TextConteiner>
-                <SimpleText>Travel Day: 00/00/00</SimpleText>
-              </TextConteiner>
-              <TextConteiner>
-                <SimpleText>Value/P: $0.00</SimpleText>
-              </TextConteiner>
-            </InnerConteiner>
-          </TextOutConteiner>
-        </DetailsConteiner>
-      </Container>
+              <ActionIconButton
+                size={25}
+                borderColor={Colors.primaryGray}
+                type={typeActionButton}
+                onPress={onPressActionButton}
+                isFavorite={isFavorite}
+              />
+            </TitleContainer>
+            <LabelOutConteiner>
+              <Label type={status} />
+            </LabelOutConteiner>
+            <TextOutConteiner>
+              <InnerConteiner>
+                <TextConteiner>
+                  <Description ellipsizeMode="tail" numberOfLines={1}>
+                    {description}
+                  </Description>
+                </TextConteiner>
+                <TextConteiner>
+                  <SimpleText>
+                    QTD/P:{" "}
+                    {travelers_acepted.length + "/" + travelers_max_quantity}
+                  </SimpleText>
+                </TextConteiner>
+              </InnerConteiner>
+              <InnerConteiner>
+                <TextConteiner>
+                  <SimpleText>Travel Day: {travel_date}</SimpleText>
+                </TextConteiner>
+                <TextConteiner>
+                  <SimpleText>
+                    Value/P: $
+                    {(travel_price / travelers_max_quantity).toFixed(2)}
+                  </SimpleText>
+                </TextConteiner>
+              </InnerConteiner>
+            </TextOutConteiner>
+          </DetailsConteiner>
+        </Container>
+      </Pressable>
     </>
   );
 };

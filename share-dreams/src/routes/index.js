@@ -63,14 +63,7 @@ const Screens = () => {
           },
         }}
       >
-        <Stack.Screen
-          name="Details"
-          component={Details}
-          options={{
-            title: "Details",
-            headerShadowVisible: true,
-          }}
-        />
+        
         <Stack.Screen
           name="Home"
           component={TabScreens}
@@ -91,6 +84,15 @@ const Screens = () => {
           component={Registration}
           options={{
             title: "Travel Register",
+            headerShadowVisible: true,
+          }}
+        />
+
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{
+            title: "Details",
             headerShadowVisible: true,
           }}
         />

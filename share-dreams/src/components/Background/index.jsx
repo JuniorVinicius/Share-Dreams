@@ -9,11 +9,12 @@ export default function BackgroundImage({
   colorStarInnactive,
   onPress,
   isActive,
+  image
 }) {
   return (
     <>
       <Container>
-        <Image source={require("../../../assets/images/image-test.png")} />
+        <Image source={{uri: image}} />
       </Container>
 
       {isActive ? (

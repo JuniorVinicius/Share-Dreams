@@ -5,7 +5,7 @@ const types = {
   accepted: "Accepted",
   rejected: "Rejected",
   pending: "Pending",
-  adm: "Adm",
+  adm: "Admin",
 };
 
 export const Container = styled.View`

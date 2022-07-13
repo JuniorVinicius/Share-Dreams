@@ -9,6 +9,7 @@ export default function TravelerPic({
   isOwner,
   onPress,
   isAddTraveler,
+  image
 }) {
   return (
     <>
@@ -17,7 +18,7 @@ export default function TravelerPic({
           {isAddTraveler ? (
             <AntDesign name="adduser" size={32} color="black" />
           ) : (
-            <Profile source={require("../../../assets/images/author-test.png")} />
+            <Profile source={{uri:image}} />
           )}
         </ProfileContainer>
         <TravelerName>{isOwner ? name + "(author)" : name}</TravelerName>

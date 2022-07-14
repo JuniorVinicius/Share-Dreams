@@ -23,6 +23,7 @@ import {
   MOCK_TRAVELS,
   MOCK_USER,
 } from "../../data";
+import { Alert } from "react-native";
 
 export default function Details({ navigation }) {
   const [isFavorited, setIsFavorited] = useState(false);
@@ -73,6 +74,13 @@ export default function Details({ navigation }) {
     }
   }, [travelId]);
 
+
+
+  const addUserHandler = () => {
+    Alert.alert("Em construção!");
+  };
+
+
   const TRAVELERS = travelData?.travelers_acepted.map((item) => {
     const traveler = MOCK_TRAVELERS.find((traveler) => traveler.id === item);
     if (traveler.id !== owner.id) {
@@ -82,6 +90,7 @@ export default function Details({ navigation }) {
           image={traveler?.profile_picture}
           name={traveler?.name}
           isOwner={false}
+          onPress={addUserHandler}
         />
       );
     }
@@ -131,6 +140,8 @@ export default function Details({ navigation }) {
     navigation.navigate("Home");
   };
 
+
+
   return (
     <>
       <ScrollView>
@@ -149,6 +160,7 @@ export default function Details({ navigation }) {
             image={owner?.profile_picture}
             name={owner?.name}
             description={owner?.bio}
+            onPress={addUserHandler}
           />
 
           <DescriptionOutContainer>
@@ -181,9 +193,18 @@ export default function Details({ navigation }) {
               image={owner?.profile_picture}
               name={owner?.name}
               isOwner={true}
+              onPress={addUserHandler}
             />
             {TRAVELERS}
-            <TravelerPic isAddTraveler={true} name="Add Traveler" />
+            {MOCK_USER.id === owner?.id && (
+              <TravelerPic
+                isAddTraveler={true}
+                name="Add Traveler"
+                hasPendingInvite={travelData?.travelers_pending.length > 0}
+                pendingInviteQtd={travelData?.travelers_pending.length}
+                onPress={addUserHandler}
+              />
+            )}
           </ScrollView>
           <ButtonContainer>
             {isCancelButton ? (

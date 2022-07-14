@@ -17,6 +17,7 @@ export const ProfileContainer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: ${({hasPendingInvite}) => hasPendingInvite ? '2px solid ' + Colors.primaryRed : 'none'};
 `;
 
 export const Profile = styled.Image`

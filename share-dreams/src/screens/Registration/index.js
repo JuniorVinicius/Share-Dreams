@@ -12,7 +12,7 @@ export default function Registration({ navigation }) {
   const [price, setPrice] = useState("");
   const [amountPeople, setAmountPeople] = useState("");
   const [description, setDescription] = useState("");
-  const { setAllTravels } = useContext(TravelContext);
+  const { setAllTravels, setMyAllTravels } = useContext(TravelContext);
   useEffect(() => {
     if (date.length === 2) {
       setDate(`${date}/`);
@@ -92,6 +92,7 @@ export default function Registration({ navigation }) {
     };
 
     setAllTravels((prev) => [...prev, travel]);
+    setMyAllTravels((prev) => [...prev, travel]);
     navigation.navigate("Home");
   };
 

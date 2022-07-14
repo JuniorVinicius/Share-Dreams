@@ -19,12 +19,12 @@ import {
 import { TravelContext } from "../../context/travelContext";
 import { MOCK_ALL_TRAVELS, MOCK_TRAVELERS, MOCK_TRAVELS, MOCK_USER } from "../../data";
 
-export default function Details() {
+export default function Details({ navigation }) {
   const [isFavorited, setIsFavorited] = useState(false);
   const [travelData, setTravelData] = useState();
   const [owner, setOwner] = useState();
   const [isCancelButton, setIsCancelButton] = useState(false);
-  const { travelId, setFavorites, favorites, allTravels } = useContext(TravelContext);
+  const { travelId, setFavorites, favorites, allTravels, setAllTravels, setMyAllTravels } = useContext(TravelContext);
 
   const favoriteHandler = () => {
     if (!isFavorited) {
@@ -74,6 +74,32 @@ export default function Details() {
       );
     }
   });
+
+  const cancelHandler = () => {
+    if(travelData?.author_id === MOCK_USER.id){
+      setAllTravels((prev) => prev.filter((item) => item.id !== travelId));
+      setMyAllTravels((prev) => prev.filter((item) => item.id !== travelId));
+    }else{
+      setMyAllTravels((prev) => prev.filter((item) => item.id !== travelId));
+      allTravels.forEach((item) => {
+        if (item.id === travelId) {
+          item.travelers_acepted.forEach((traveler) => {
+            if (traveler === MOCK_USER.id) {
+              item.travelers_acepted.splice(item.travelers_acepted.indexOf(traveler), 1);
+            }
+          })
+          item.travelers_pending.forEach((traveler) => {
+            if (traveler === MOCK_USER.id) {
+              item.travelers_pending.splice(item.travelers_pending.indexOf(traveler), 1);
+            }
+          })
+        }
+      })
+      setAllTravels([...allTravels]);
+    }
+
+    navigation.navigate('Home');
+  }
 
   return (
     <>
@@ -131,7 +157,7 @@ export default function Details() {
           </ScrollView>
           <ButtonContainer>
             {isCancelButton ? (
-              <SimpleButton title="Cancel" />
+              <SimpleButton title="Cancel" onPress={cancelHandler}/>
             ) : (
               <SimpleButton title="Sign Up" />
             )}

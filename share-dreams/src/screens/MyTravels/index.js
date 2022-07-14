@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { Travel, MainContainer } from "../../components";
+import { Travel, MainContainer, EmptyScreen } from "../../components";
 import { MOCK_TRAVELS } from "./../../data";
 import { MOCK_USER } from "./../../data";
 import { TravelContext } from "./../../context/travelContext";
 
 const MyTravels = ({ navigation }) => {
-  const { setTravelId } = useContext(TravelContext);
+  const { setTravelId, myAllTravels} = useContext(TravelContext);
   const [travels, setTravels] = useState([]);
 
   const handleClickTravel = (itemId) => {
@@ -26,16 +26,17 @@ const MyTravels = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const MyTravels = MOCK_TRAVELS.filter(
+    const MyTravels = myAllTravels.filter(
       (travel) => travel.author_id === MOCK_USER.id
     );
     setTravels(MyTravels);
-  }, [MOCK_TRAVELS]);
+  }, [myAllTravels]);
 
 
 
   return (
-    <MainContainer>
+    <>
+      {travels.length > 0 ? (<MainContainer>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={travels}
@@ -43,7 +44,8 @@ const MyTravels = ({ navigation }) => {
         keyExtractor={(item) => item.id.toString()}
       />
 
-    </MainContainer>
+    </MainContainer>): <EmptyScreen title="No Travels" />}
+    </>
   );
 };
 

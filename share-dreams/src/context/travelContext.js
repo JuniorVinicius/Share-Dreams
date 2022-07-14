@@ -1,11 +1,13 @@
 import { createContext, useState } from "react";
-import { MOCK_USER, MOCK_ALL_TRAVELS } from "../data";
+import { MOCK_ALL_TRAVELS, MOCK_TRAVELS } from "../data";
 export const TravelContext = createContext({
   travelId: null,
   favorites: [],
-  searchedTravel: '',
+  searchedTravel: "",
   allTravels: [],
+  myAllTravels: [],
   setAllTravels: () => {},
+  setMyAllTravels: () => {},
   setSearchedTravel: () => {},
   setFavorites: () => {},
   setTravelId: () => {},
@@ -16,6 +18,7 @@ export const TravelProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [searchedTravel, setSearchedTravel] = useState(null);
   const [allTravels, setAllTravels] = useState(MOCK_ALL_TRAVELS);
+  const [myAllTravels, setMyAllTravels] = useState(MOCK_TRAVELS);
 
   return (
     <TravelContext.Provider
@@ -28,6 +31,8 @@ export const TravelProvider = ({ children }) => {
         setSearchedTravel,
         allTravels,
         setAllTravels,
+        myAllTravels,
+        setMyAllTravels,
       }}
     >
       {children}

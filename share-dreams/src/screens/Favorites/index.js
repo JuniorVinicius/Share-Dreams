@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { Travel, MainContainer, EmptyScreen } from "../../components";
-import { MOCK_TRAVELS } from "./../../data";
+import { MOCK_ALL_TRAVELS, MOCK_TRAVELS } from "./../../data";
 import { MOCK_USER } from "./../../data";
 import { TravelContext } from "../../context/travelContext";
 
@@ -27,7 +27,7 @@ const Favorites = ({ navigation }) => {
       status = "Accepted";
     } else if (item.travelers_pending.includes(MOCK_USER.id)) {
       status = "Pending";
-    } else {
+    } else if(item.travelers_declined.includes(MOCK_USER.id)) {
       status = "Rejected";
     }
     return (
@@ -45,7 +45,7 @@ const Favorites = ({ navigation }) => {
 
   useEffect(() => {
     const favoriteTravels = [];
-    MOCK_TRAVELS.forEach((travel) => {
+    MOCK_ALL_TRAVELS.forEach((travel) => {
       if (favorites.includes(travel.id)) {
         favoriteTravels.push(travel);
       }

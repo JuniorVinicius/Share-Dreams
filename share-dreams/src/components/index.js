@@ -1,5 +1,5 @@
 import { Travel } from "./Travels";
-import { MainContainer, ActionIconButton, AddButton, SimpleButton } from "./UI";
+import { MainContainer, ActionIconButton, AddButton, SimpleButton,SearchButton } from "./UI";
 import Label from "./Label";
 import InputField from "./Input";
 import BackgroundImage from './Background';
@@ -18,5 +18,6 @@ export {
   BackgroundImage,
   OwnerLabel,
   TravelerPic,
-  EmptyScreen
+  EmptyScreen,
+  SearchButton
 };

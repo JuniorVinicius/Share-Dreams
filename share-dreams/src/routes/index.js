@@ -7,9 +7,12 @@ import {
   Favorites,
   MyTravels,
   Registration,
+  SearchScreen,
 } from "../screens";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants";
+import { InputField, SearchButton } from "../components";
+import { useContext } from "react";
+import { TravelContext } from "../context/travelContext";
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -53,6 +56,10 @@ const TabScreens = () => {
 };
 
 const Screens = () => {
+  const { searchedTravel, setSearchedTravel } = useContext(TravelContext);
+
+  
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -63,20 +70,13 @@ const Screens = () => {
           },
         }}
       >
-        
         <Stack.Screen
           name="Home"
           component={TabScreens}
           options={{
             title: "Share Dreams",
             headerShadowVisible: false,
-            headerRight: () => (
-              <FontAwesome5
-                name="search"
-                size={18}
-                color={Colors.primaryLight}
-              />
-            ),
+            headerRight: () => <SearchButton />,
           }}
         />
         <Stack.Screen
@@ -94,6 +94,24 @@ const Screens = () => {
           options={{
             title: "Details",
             headerShadowVisible: true,
+          }}
+        />
+        <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerBackTitleVisible: false,
+            headerBackVisible: false,
+            headerShadowVisible: true,
+            headerTitle: () => (
+              <InputField
+                width={96}
+                height={30}
+                placeholder="Search"
+                value={searchedTravel}
+                onChangeText={travel => setSearchedTravel(travel)}
+              />
+            ),
           }}
         />
       </Stack.Navigator>

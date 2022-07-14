@@ -1,5 +1,15 @@
 import { MainContainer } from "./Conteiners/style";
-import { ActionIconButton, AddButton } from "./Buttons";
-import SimpleButton from "./Buttons/Main";
+import {
+  ActionIconButton,
+  AddButton,
+  SimpleButton,
+  SearchButton,
+} from "./Buttons";
 
-export { MainContainer, ActionIconButton, AddButton, SimpleButton };
+export {
+  MainContainer,
+  ActionIconButton,
+  AddButton,
+  SimpleButton,
+  SearchButton,
+};

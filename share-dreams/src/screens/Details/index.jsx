@@ -17,7 +17,7 @@ import {
   ButtonContainer,
 } from "./style";
 import { TravelContext } from "../../context/travelContext";
-import { MOCK_TRAVELERS, MOCK_TRAVELS, MOCK_USER } from "../../data";
+import { MOCK_ALL_TRAVELS, MOCK_TRAVELERS, MOCK_TRAVELS, MOCK_USER } from "../../data";
 
 export default function Details() {
   const [isFavorited, setIsFavorited] = useState(false);
@@ -37,7 +37,7 @@ export default function Details() {
   };
 
   useEffect(() => {
-    const data = MOCK_TRAVELS.find((item) => item.id === travelId);
+    const data = MOCK_ALL_TRAVELS.find((item) => item.id === travelId);
     const ownerData = MOCK_TRAVELERS.find((item) => item.id === data.author_id);
     setTravelData(data);
     setOwner(ownerData);

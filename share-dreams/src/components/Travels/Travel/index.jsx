@@ -33,6 +33,7 @@ const Travel = ({
   typeActionButton,
   onPressActionButton,
   isFavorite,
+  notHasLabel
 }) => {
   return (
     <>
@@ -59,7 +60,8 @@ const Travel = ({
               />
             </TitleContainer>
             <LabelOutConteiner>
-              <Label type={status} />
+              {notHasLabel || !status ? null : <Label type={status} />}
+              
             </LabelOutConteiner>
             <TextOutConteiner>
               <InnerConteiner>

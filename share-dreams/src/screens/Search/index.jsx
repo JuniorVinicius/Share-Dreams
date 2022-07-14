@@ -6,7 +6,7 @@ import { MOCK_ALL_TRAVELS } from "./../../data";
 import { TravelContext } from "../../context/travelContext";
 
 const SearchScreen = ({ navigation }) => {
-  const { travelId, favorites, setFavorites, setTravelId, searchedTravel } =
+  const { travelId, favorites, setFavorites, setTravelId, searchedTravel, allTravels } =
     useContext(TravelContext);
   const [travels, setTravels] = useState([]);
 
@@ -34,20 +34,20 @@ const SearchScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (searchedTravel) {
-      const filteredTravels = MOCK_ALL_TRAVELS.filter((travel) => {
+      const filteredTravels = allTravels.filter((travel) => {
         return travel.title
           .toLowerCase()
           .includes(searchedTravel.toLowerCase());
       });
       setTravels(filteredTravels)
     } else {
-      setTravels(MOCK_ALL_TRAVELS);
+      setTravels(allTravels);
     }
-  }, [searchedTravel]);
+  }, [searchedTravel, allTravels]);
 
   return (
     <>
-      {MOCK_ALL_TRAVELS.length > 0 ? (
+      {allTravels.length > 0 ? (
         <MainContainer>
           <FlatList
             showsVerticalScrollIndicator={false}

@@ -24,7 +24,7 @@ export default function Details() {
   const [travelData, setTravelData] = useState();
   const [owner, setOwner] = useState();
   const [isCancelButton, setIsCancelButton] = useState(false);
-  const { travelId, setFavorites, favorites } = useContext(TravelContext);
+  const { travelId, setFavorites, favorites, allTravels } = useContext(TravelContext);
 
   const favoriteHandler = () => {
     if (!isFavorited) {
@@ -37,7 +37,7 @@ export default function Details() {
   };
 
   useEffect(() => {
-    const data = MOCK_ALL_TRAVELS.find((item) => item.id === travelId);
+    const data = allTravels.find((item) => item.id === travelId);
     const ownerData = MOCK_TRAVELERS.find((item) => item.id === data.author_id);
     setTravelData(data);
     setOwner(ownerData);

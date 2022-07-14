@@ -6,7 +6,7 @@ import { MOCK_USER } from "./../../data";
 import { TravelContext } from "../../context/travelContext";
 
 const Favorites = ({ navigation }) => {
-  const { travelId, favorites, setFavorites, setTravelId } =
+  const { travelId, favorites, setFavorites, setTravelId, allTravels } =
     useContext(TravelContext);
   const [travels, setTravels] = useState([]);
 
@@ -45,7 +45,7 @@ const Favorites = ({ navigation }) => {
 
   useEffect(() => {
     const favoriteTravels = [];
-    MOCK_ALL_TRAVELS.forEach((travel) => {
+    allTravels.forEach((travel) => {
       if (favorites.includes(travel.id)) {
         favoriteTravels.push(travel);
       }
